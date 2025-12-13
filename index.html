@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding RSVP</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "precious and kdax", serif;
+            background-color: #faf7f2;
+            color: #333;
+        }
+
+        header {
+            background: url('https://images.unsplash.com/photo-1529636129814-44b6b4ad1b9a?auto=format&fit=crop&w=1400&q=80')
+            center/cover no-repeat;
+            height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            margin: 0;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+
+        header p {
+            font-size: 1.5rem;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+        }
+
+        section {
+            padding: 40px 20px;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+        }
+
+        .details div {
+            margin: 20px 0;
+            font-size: 1.2rem;
+            line-height: 1.7;
+        }
+
+        form {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        button {
+            margin-top: 20px;
+            background-color: #b88b6a;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #9e7456;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            font-size: 1rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div>
+        <h1>precious and kdax</h1>
+        <p>We're getting married • July 18, 2026</p>
+    </div>
+</header>
+
+<section class="details">
+    <h2>Wedding Details</h2>
+    <div>
+        📍 <strong>Location:</strong> Rose Garden Estate, Napa Valley<br>
+        🕒 <strong>Time:</strong> Ceremony at 4:00 PM, Reception to follow<br>
+        👗 <strong>Dress Code:</strong> Formal Garden Attire
+    </div>
+</section>
+
+<section class="rsvp">
+    <h2>RSVP</h2>
+    <form action="https://formsubmit.co/YOUR-EMAIL-HERE" method="POST">
+        
+        <!-- Hidden settings for formsubmit -->
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="New Wedding RSVP!">
+
+        <label>Your Name</label>
+        <input type="text" name="Name" required>
+
+        <label>Email</label>
+        <input type="email" name="Email" required>
+
+        <label>Will you attend?</label>
+        <select name="Attendance" required>
+            <option value="">Select an option</option>
+            <option value="Yes, gladly!">Yes, gladly!</option>
+            <option value="Sorry, I cannot attend">Sorry, I cannot attend</option>
+        </select>
+
+        <label>Number of Guests</label>
+        <input type="number" name="Guests" min="1" max="10">
+
+        <label>Dietary Restrictions</label>
+        <textarea name="Dietary Preferences" rows="3"></textarea>
+
+        <button type="submit">Submit RSVP</button>
+    </form>
+</section>
+
+<footer>
+    With love, Emma & Daniel
+</footer>
+
+</body>
+</html>
