@@ -39,9 +39,10 @@
       text-align: center;
       padding: 2rem;
       background:
-        radial-gradient(circle at top left, rgba(201,162,77,0.35), transparent 40%),
-        radial-gradient(circle at bottom right, rgba(236,72,153,0.25), transparent 45%),
-        linear-gradient(135deg, #fffaf3, #f7efe4);
+        radial-gradient(circle at top left, rgba(255,99,132,0.45), transparent 40%),
+        radial-gradient(circle at top right, rgba(255,206,86,0.45), transparent 40%),
+        radial-gradient(circle at bottom left, rgba(75,192,192,0.45), transparent 45%),
+        linear-gradient(135deg, #ffecd2, #fcb69f);
       position: relative;
       overflow: hidden;
     }
@@ -50,8 +51,8 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: url("https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
-      opacity: 0.18;
+      background: url("https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+      opacity: 0.22;
       z-index: 0;
     }
 
@@ -194,6 +195,42 @@
       display: none;
     }
 
+    /* ---------- GALLERY ---------- */
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.6s ease;
+    }
+
+    .carousel img {
+      width: 100%;
+      flex-shrink: 0;
+      border-radius: 1.5rem;
+    }
+
+    .carousel .nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.85);
+      border: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #444;
+    }
+
+    .carousel .prev { left: 12px; }
+    .carousel .next { right: 12px; }
+
     /* ---------- STATS ---------- */
     .stats {
       display: grid;
@@ -256,7 +293,7 @@
   <!-- HERO -->
   <header>
     <div class="hero">
-      <h1>Join the Wedding of <span>light& precious</span></h1>
+      <h1>Join the Wedding of <span>Light & Precious</span></h1>
       <p>With joyful hearts, we invite you to celebrate our union</p>
 
       <div class="countdown">
@@ -267,6 +304,23 @@
       </div>
     </div>
   </header>
+
+  <!-- GALLERY -->
+  <section>
+    <div class="card">
+      <h2>Our Love Story</h2>
+      <div class="carousel">
+        <button class="nav prev">‹</button>
+        <div class="carousel-track" id="carouselTrack">
+          <img src="https://images.unsplash.com/photo-1520857014576-2c4f4c972b57?auto=format&fit=crop&w=1200&q=80" />
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80" />
+          <img src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=1200&q=80" />
+          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1200&q=80" />
+        </div>
+        <button class="nav next">›</button>
+      </div>
+    </div>
+  </section>
 
   <!-- RSVP -->
   <section>
@@ -302,7 +356,7 @@
   </section>
 
   <footer>
-    © 2025 light & precious• With Love
+    © 2025 Light & Precious• With Love
   </footer>
 
   <!-- JS -->
@@ -354,11 +408,33 @@
       form.reset();
       successMsg.style.display = "block";
       updateStats();
-    });
+
+    /* ---------- GALLERY LOGIC ---------- */
+    const track = document.getElementById("carouselTrack");
+    const slides = track.children;
+    let index = 0;
+
+    function updateCarousel() {
+      track.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    document.querySelector(".next").onclick = () => {
+      index = (index + 1) % slides.length;
+      updateCarousel();
+    };
+
+    document.querySelector(".prev").onclick = () => {
+      index = (index - 1 + slides.length) % slides.length;
+      updateCarousel();
+    };
+
+    setInterval(() => {
+      index = (index + 1) % slides.length;
+      updateCarousel();
+    }, 5000);
+  });
 
     updateStats();
   </script>
 </body>
 </html>
-
-
