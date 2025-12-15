@@ -1,155 +1,364 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding RSVP</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: "precious and kdax", serif;
-            background-color: #faf7f2;
-            color: #333;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding RSVP | Elegant Celebration</title>
 
-        header {
-            background: url('https://images.unsplash.com/photo-1529636129814-44b6b4ad1b9a?auto=format&fit=crop&w=1400&q=80')
-            center/cover no-repeat;
-            height: 70vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-        }
+  <!-- ================== CSS ================== -->
+  <style>
+    :root {
+      --bg: #faf7f5;
+      --card: #ffffff;
+      --accent: #c9a24d; /* champagne gold */
+      --accent-soft: #f3ead7;
+      --text: #2c2c2c;
+      --muted: #6b7280;
+      --success: #16a34a;
+    }
 
-        header h1 {
-            font-size: 4rem;
-            margin: 0;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Playfair Display", "Segoe UI", serif;
+    }
 
-        header p {
-            font-size: 1.5rem;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.4);
-        }
+    body {
+      background: linear-gradient(to bottom, #fff, var(--bg));
+      color: var(--text);
+      min-height: 100vh;
+    }
 
-        section {
-            padding: 40px 20px;
-            max-width: 700px;
-            margin: auto;
-        }
+    /* ---------- HERO ---------- */
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      background:
+        radial-gradient(circle at top left, rgba(201,162,77,0.35), transparent 40%),
+        radial-gradient(circle at bottom right, rgba(236,72,153,0.25), transparent 45%),
+        linear-gradient(135deg, #fffaf3, #f7efe4);
+      position: relative;
+      overflow: hidden;
+    }
 
-        h2 {
-            text-align: center;
-            font-size: 2.4rem;
-            margin-bottom: 10px;
-        }
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+      opacity: 0.18;
+      z-index: 0;
+    }
 
-        .details div {
-            margin: 20px 0;
-            font-size: 1.2rem;
-            line-height: 1.7;
-        }
+    .hero {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      animation: fadeIn 1.2s ease forwards;
+    }
 
-        form {
-            background: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
-        }
+    .hero {
+      max-width: 900px;
+      animation: fadeIn 1.2s ease forwards;
+    }
 
-        label {
-            font-weight: bold;
-            display: block;
-            margin-top: 15px;
-        }
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
 
-        input, select, textarea {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            font-size: 1rem;
-        }
+    .hero h1 span {
+      color: var(--accent);
+      display: block;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      text-transform: none;
+      margin-top: 0.5rem;
+    }
 
-        button {
-            margin-top: 20px;
-            background-color: #b88b6a;
-            color: white;
-            border: none;
-            padding: 15px 20px;
-            font-size: 1.1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-        }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
 
-        button:hover {
-            background-color: #9e7456;
-        }
+    /* ---------- COUNTDOWN ---------- */
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      margin-top: 2rem;
+    }
 
-        footer {
-            text-align: center;
-            padding: 25px;
-            font-size: 1rem;
-            color: #666;
-        }
-    </style>
+    .time-box {
+      background: var(--card);
+      border-radius: 1.25rem;
+      padding: 1.8rem 1rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .time-box h2 {
+      font-size: 2.2rem;
+      color: var(--accent);
+    }
+
+    .time-box span {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ---------- SECTION ---------- */
+    section {
+      padding: 5rem 1.5rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 1.5rem;
+      padding: 3rem;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .card h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      color: var(--accent);
+      margin-bottom: 2rem;
+    }
+
+    /* ---------- FORM ---------- */
+    form {
+      display: grid;
+      gap: 1.4rem;
+    }
+
+    label {
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    input,
+    select {
+      padding: 1rem;
+      border-radius: 0.8rem;
+      border: 1px solid #e5e7eb;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent-soft);
+    }
+
+    button {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), #e8d6a8);
+      color: #3b2f14;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px rgba(201,162,77,0.35);
+    }
+
+    .message {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: var(--success);
+      display: none;
+    }
+
+    /* ---------- STATS ---------- */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .stat {
+      background: #faf7f5;
+      border-radius: 1.2rem;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .stat h3 {
+      font-size: 2.6rem;
+      color: var(--accent);
+    }
+
+    .stat p {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ---------- ANIMATIONS ---------- */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 768px) {
+      .countdown { grid-template-columns: repeat(2, 1fr); }
+      .card { padding: 2rem; }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-    <div>
-        <h1>precious and kdax</h1>
-        <p>We're getting married • July 18, 2026</p>
+  <!-- HERO -->
+  <header>
+    <div class="hero">
+      <h1>Join the Wedding of <span>light& precious</span></h1>
+      <p>With joyful hearts, we invite you to celebrate our union</p>
+
+      <div class="countdown">
+        <div class="time-box"><h2 id="days">00</h2><span>Days</span></div>
+        <div class="time-box"><h2 id="hours">00</h2><span>Hours</span></div>
+        <div class="time-box"><h2 id="minutes">00</h2><span>Minutes</span></div>
+        <div class="time-box"><h2 id="seconds">00</h2><span>Seconds</span></div>
+      </div>
     </div>
-</header>
+  </header>
 
-<section class="details">
-    <h2>Wedding Details</h2>
-    <div>
-        📍 <strong>Location:</strong> Rose Garden Estate, Napa Valley<br>
-        🕒 <strong>Time:</strong> Ceremony at 4:00 PM, Reception to follow<br>
-        👗 <strong>Dress Code:</strong> Formal Garden Attire
-    </div>
-</section>
-
-<section class="rsvp">
-    <h2>RSVP</h2>
-    <form action="https://formsubmit.co/YOUR-EMAIL-HERE" method="POST">
-        
-        <!-- Hidden settings for formsubmit -->
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_subject" value="New Wedding RSVP!">
-
-        <label>Your Name</label>
-        <input type="text" name="Name" required>
-
-        <label>Email</label>
-        <input type="email" name="Email" required>
-
-        <label>Will you attend?</label>
-        <select name="Attendance" required>
-            <option value="">Select an option</option>
-            <option value="Yes, gladly!">Yes, gladly!</option>
-            <option value="Sorry, I cannot attend">Sorry, I cannot attend</option>
-        </select>
-
-        <label>Number of Guests</label>
-        <input type="number" name="Guests" min="1" max="10">
-
-        <label>Dietary Restrictions</label>
-        <textarea name="Dietary Preferences" rows="3"></textarea>
-
+  <!-- RSVP -->
+  <section>
+    <div class="card">
+      <h2>Kindly Respond</h2>
+      <form id="rsvpForm">
+        <div>
+          <label>Guest Name</label>
+          <input type="text" id="name" required />
+        </div>
+        <div>
+          <label>Email</label>
+          <input type="email" id="email" required />
+        </div>
+        <div>
+          <label>Attendance</label>
+          <select id="attendance" required>
+            <option value="">Please Select</option>
+            <option value="yes">Joyfully Accepts</option>
+            <option value="no">Regretfully Declines</option>
+          </select>
+        </div>
         <button type="submit">Submit RSVP</button>
-    </form>
-</section>
+        <p class="message" id="successMsg">Thank you for your response ❤️</p>
+      </form>
 
-<footer>
-    With love, Emma & Daniel
-</footer>
+      <div class="stats">
+        <div class="stat"><h3 id="totalCount">0</h3><p>Total Responses</p></div>
+        <div class="stat"><h3 id="yesCount">0</h3><p>Attending</p></div>
+        <div class="stat"><h3 id="noCount">0</h3><p>Not Attending</p></div>
+      </div>
+    </div>
+  </section>
 
+  <footer>
+    © 2025 light & precious• With Love
+  </footer>
+
+  <!-- JS -->
+  <script>
+    const eventDate = new Date("2025-12-20T15:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = eventDate - now;
+      if (diff <= 0) return;
+
+      document.getElementById("days").textContent = Math.floor(diff / (1000*60*60*24));
+      document.getElementById("hours").textContent = Math.floor((diff / (1000*60*60)) % 24);
+      document.getElementById("minutes").textContent = Math.floor((diff / (1000*60)) % 60);
+      document.getElementById("seconds").textContent = Math.floor((diff / 1000) % 60);
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    const form = document.getElementById("rsvpForm");
+    const successMsg = document.getElementById("successMsg");
+
+    function getData() {
+      return JSON.parse(localStorage.getItem("weddingRSVP")) || [];
+    }
+
+    function updateStats() {
+      const data = getData();
+      document.getElementById("totalCount").textContent = data.length;
+      document.getElementById("yesCount").textContent = data.filter(d => d.attendance === "yes").length;
+      document.getElementById("noCount").textContent = data.filter(d => d.attendance === "no").length;
+    }
+
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+
+      const entry = {
+        name: name.value,
+        email: email.value,
+        attendance: attendance.value,
+        time: new Date().toISOString()
+      };
+
+      const data = getData();
+      data.push(entry);
+      localStorage.setItem("weddingRSVP", JSON.stringify(data));
+
+      form.reset();
+      successMsg.style.display = "block";
+      updateStats();
+    });
+
+    updateStats();
+  </script>
 </body>
 </html>
+
+
