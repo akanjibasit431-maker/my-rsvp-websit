@@ -323,92 +323,41 @@
   </section>
 
   <!-- RSVP -->
-  <section>
-    <div class="card">
-      <h2>Kindly Respond</h2>
-      <form id="rsvpForm">
-        <div>
-          <label>Guest Name</label>
-          <input type="text" id="name" required />
-        </div>
-        <div>
-          <label>Email</label>
-          <input type="email" id="email" required />
-        </div>
-        <div>
-          <label>Attendance</label>
-          <select id="attendance" required>
-            <option value="">Please Select</option>
-            <option value="yes">Joyfully Accepts</option>
-            <option value="no">Regretfully Declines</option>
-          </select>
-        </div>
-        <button type="submit">Submit RSVP</button>
-        <p class="message" id="successMsg">Thank you for your response ❤️</p>
-      </form>
+  <form id="rsvpForm">
+            <div>
+           <label for="name">Full Name</label>
+       <input type="text" id="name" placeholder="Enter your name" required>
+            </div>
 
-      <div class="stats">
-        <div class="stat"><h3 id="totalCount">0</h3><p>Total Responses</p></div>
-        <div class="stat"><h3 id="yesCount">0</h3><p>Attending</p></div>
-        <div class="stat"><h3 id="noCount">0</h3><p>Not Attending</p></div>
-      </div>
+            <div>
+          <label for="email">Email Address</label>
+     <input type="email" id="email" placeholder="your@email.com" required>
+            </div>
+
+            <div>
+        <label for="guests">Number of Guests</label>
+         <select id="guests" required>
+            <option value="">Select</option>
+               <option value="1">1 (just me)</option>
+              <option value="2">2</option>
+                <option value="3">3</option>
+                 <option value="4">4</option>
+                <option value="5+">5+</option>
+                </select>
+            </div>
+
+            <div>
+         <label for="message">Message (optional)</label>
+         <textarea id="message" rows="3" placeholder="Any dietary restrictions or comments?"></textarea>
+            </div>
+
+            <button type="submit">Submit RSVP</button>
+        </form>
+
+        <div id="response" class="response">
+            <p id="responseText"></p>
+        </div>
     </div>
-  </section>
-
-  <footer>
-    © 2025 Light & Precious• With Love
-  </footer>
-
-  <!-- JS -->
-  <script>
-    const eventDate = new Date("2025-12-20T15:00:00").getTime();
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const diff = eventDate - now;
-      if (diff <= 0) return;
-
-      document.getElementById("days").textContent = Math.floor(diff / (1000*60*60*24));
-      document.getElementById("hours").textContent = Math.floor((diff / (1000*60*60)) % 24);
-      document.getElementById("minutes").textContent = Math.floor((diff / (1000*60)) % 60);
-      document.getElementById("seconds").textContent = Math.floor((diff / 1000) % 60);
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-
-    const form = document.getElementById("rsvpForm");
-    const successMsg = document.getElementById("successMsg");
-
-    function getData() {
-      return JSON.parse(localStorage.getItem("weddingRSVP")) || [];
-    }
-
-    function updateStats() {
-      const data = getData();
-      document.getElementById("totalCount").textContent = data.length;
-      document.getElementById("yesCount").textContent = data.filter(d => d.attendance === "yes").length;
-      document.getElementById("noCount").textContent = data.filter(d => d.attendance === "no").length;
-    }
-
-    form.addEventListener("submit", e => {
-      e.preventDefault();
-
-      const entry = {
-        name: name.value,
-        email: email.value,
-        attendance: attendance.value,
-        time: new Date().toISOString()
-      };
-
-      const data = getData();
-      data.push(entry);
-      localStorage.setItem("weddingRSVP", JSON.stringify(data));
-
-      form.reset();
-      successMsg.style.display = "block";
-      updateStats();
-
     /* ---------- GALLERY LOGIC ---------- */
     const track = document.getElementById("carouselTrack");
     const slides = track.children;
@@ -438,6 +387,7 @@
   </script>
 </body>
 </html>
+
 
 
 
