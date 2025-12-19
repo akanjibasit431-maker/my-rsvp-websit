@@ -297,10 +297,10 @@
       <p>With joyful hearts, we invite you to celebrate our union</p>
 
       <div class="countdown">
-        <div class="time-box"><h2 id="days">00</h2><span>Days</span></div>
-        <div class="time-box"><h2 id="hours">00</h2><span>Hours</span></div>
-        <div class="time-box"><h2 id="minutes">00</h2><span>Minutes</span></div>
-        <div class="time-box"><h2 id="seconds">00</h2><span>Seconds</span></div>
+        <div class="time-box"><h2 id="days">12</h2><span>Days</span></div>
+        <div class="time-box"><h2 id="hours">15</h2><span>Hours</span></div>
+        <div class="time-box"><h2 id="minutes">39</h2><span>Minutes</span></div>
+        <div class="time-box"><h2 id="seconds">20</h2><span>Seconds</span></div>
       </div>
     </div>
   </header>
@@ -358,35 +358,11 @@
             <p id="responseText"></p>
         </div>
     </div>
-    /* ---------- GALLERY LOGIC ---------- */
-    const track = document.getElementById("carouselTrack");
-    const slides = track.children;
-    let index = 0;
 
-    function updateCarousel() {
-      track.style.transform = `translateX(-${index * 100}%)`;
-    }
-
-    document.querySelector(".next").onclick = () => {
-      index = (index + 1) % slides.length;
-      updateCarousel();
-    };
-
-    document.querySelector(".prev").onclick = () => {
-      index = (index - 1 + slides.length) % slides.length;
-      updateCarousel();
-    };
-
-    setInterval(() => {
-      index = (index + 1) % slides.length;
-      updateCarousel();
-    }, 5000);
-  });
-
-    updateStats();
   </script>
 </body>
 </html>
+
 
 
 
