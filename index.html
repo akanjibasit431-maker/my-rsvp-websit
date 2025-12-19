@@ -361,83 +361,89 @@
 
   <!-- JS -->
   <script>
-    const eventDate = new Date("2025-12-20T15:00:00").getTime();
+    <script>
+/* ================= COUNTDOWN ================= */
+const eventDate = new Date("2025-12-20T15:00:00").getTime();
 
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const diff = eventDate - now;
-      if (diff <= 0) return;
+function updateCountdown() {
+  const now = new Date().getTime();
+  const diff = eventDate - now;
+  if (diff <= 0) return;
 
-      document.getElementById("days").textContent = Math.floor(diff / (1000*60*60*24));
-      document.getElementById("hours").textContent = Math.floor((diff / (1000*60*60)) % 24);
-      document.getElementById("minutes").textContent = Math.floor((diff / (1000*60)) % 60);
-      document.getElementById("seconds").textContent = Math.floor((diff / 1000) % 60);
-    }
+  days.textContent = Math.floor(diff / (1000*60*60*24));
+  hours.textContent = Math.floor((diff / (1000*60*60)) % 24);
+  minutes.textContent = Math.floor((diff / (1000*60)) % 60);
+  seconds.textContent = Math.floor((diff / 1000) % 60);
+}
 
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+setInterval(updateCountdown, 1000);
+updateCountdown();
 
-    const form = document.getElementById("rsvpForm");
-    const successMsg = document.getElementById("successMsg");
+/* ================= RSVP ================= */
+const form = document.getElementById("rsvpForm");
+const successMsg = document.getElementById("successMsg");
 
-    function getData() {
-      return JSON.parse(localStorage.getItem("weddingRSVP")) || [];
-    }
+function getData() {
+  return JSON.parse(localStorage.getItem("weddingRSVP")) || [];
+}
 
-    function updateStats() {
-      const data = getData();
-      document.getElementById("totalCount").textContent = data.length;
-      document.getElementById("yesCount").textContent = data.filter(d => d.attendance === "yes").length;
-      document.getElementById("noCount").textContent = data.filter(d => d.attendance === "no").length;
-    }
+function updateStats() {
+  const data = getData();
+  totalCount.textContent = data.length;
+  yesCount.textContent = data.filter(d => d.attendance === "yes").length;
+  noCount.textContent = data.filter(d => d.attendance === "no").length;
+}
 
-    form.addEventListener("submit", e => {
-      e.preventDefault();
+form.addEventListener("submit", e => {
+  e.preventDefault();
 
-      const entry = {
-        name: name.value,
-        email: email.value,
-        attendance: attendance.value,
-        time: new Date().toISOString()
-      };
+  const entry = {
+    name: name.value,
+    email: email.value,
+    attendance: attendance.value,
+    time: new Date().toISOString()
+  };
 
-      const data = getData();
-      data.push(entry);
-      localStorage.setItem("weddingRSVP", JSON.stringify(data));
+  const data = getData();
+  data.push(entry);
+  localStorage.setItem("weddingRSVP", JSON.stringify(data));
 
-      form.reset();
-      successMsg.style.display = "block";
-      updateStats();
--/*--------- GALLERY LOGIC ---------- */
-    const track = document.getElementById("carouselTrack");
-    const slides = track.children;
-    let index = 0;
+  form.reset();
+  successMsg.style.display = "block";
+  updateStats();
+});
 
-    function updateCarousel() {
-      track.style.transform = `translateX(-${index * 100}%)`;
-    }
+updateStats();
 
-    document.querySelector(".next").onclick = () => {
-      index = (index + 1) % slides.length;
-      updateCarousel();
-    };
+/* ================= GALLERY ================= */
+const track = document.getElementById("carouselTrack");
+const slides = track.children;
+let index = 0;
 
-    document.querySelector(".prev").onclick = () => {
-      index = (index - 1 + slides.length) % slides.length;
-      updateCarousel();
-    };
+function updateCarousel() {
+  track.style.transform = `translateX(-${index * 100}%)`;
+}
 
-    setInterval(() => {
-      index = (index + 1) % slides.length;
-      updateCarousel();
-    }, 5000);
-  });
+document.querySelector(".next").onclick = () => {
+  index = (index + 1) % slides.length;
+  updateCarousel();
+};
 
-    updateStats();
-  
+document.querySelector(".prev").onclick = () => {
+  index = (index - 1 + slides.length) % slides.length;
+  updateCarousel();
+};
+
+setInterval(() => {
+  index = (index + 1) % slides.length;
+  updateCarousel();
+}, 5000);
+</script>
+
   </script>
 </body>
 </html>
+
 
 
 
